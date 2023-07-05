@@ -1,0 +1,368 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>DHA Quetta</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+    <meta content="" name="author" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="~/images/favicon.ico">
+
+    <!-- App css -->
+    <link rel="stylesheet" href="~/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/icons.css" />
+    <link rel="stylesheet" href="~/css/metisMenu.min.css" />
+    <link rel="stylesheet" href="~/css/style.css" />
+
+   @* <link rel="stylesheet" href="~/plugins/dropify/css/dropify.min.css">
+    <link rel="stylesheet" href="~/plugins/filter/magnific-popup.css" />
+
+    <!-- Sweet Alert -->
+    <link rel="stylesheet" href="~/plugins/sweet-alert2/sweetalert2.min.css" />
+    <link rel="stylesheet" href="~/plugins/animate/animate.min.css" />
+
+    <!-- DataTables -->
+    <link rel="stylesheet" href="~/plugins/datatables/dataTables.bootstrap4.min.css" />
+    <link rel="stylesheet" href="~/plugins/datatables/buttons.bootstrap4.min.css" />
+    <!-- Responsive datatable examples -->
+    <link rel="stylesheet" href="~/plugins/datatables/responsive.bootstrap4.min.css" />*@
+
+   
+
+ @RenderSection("head", required: false)
+</head>
+<body>
+
+    <form id="form1" runat="server">
+        <!-- Top Bar Start -->
+        <div class="topbar">
+            <!-- LOGO -->
+            <div class="topbar-left">
+                <a href="~/projects/projects-index.html" class="logo">
+                    <span>
+                        <img src="~/images/logo-sm.png" alt="logo-small" class="logo-sm">
+                    </span>
+                    <span>
+                        <img src="~/images/logo.png" alt="logo-large" class="logo-lg logo-light">
+                        <img src="~/images/logo-dark.png" alt="logo-large" class="logo-lg">
+                    </span>
+                </a>
+            </div>
+            <!--end logo-->
+            <!-- Navbar -->
+            <nav class="navbar-custom">
+                <ul class="list-unstyled topbar-nav float-right mb-0">
+                    <li class="dropdown">
+                        <a class="nav-link dropdown-toggle waves-effect waves-light nav-user" data-toggle="dropdown" href="#" role="button"
+                           aria-haspopup="false" aria-expanded="false">
+                            <img src="~/images/users/user-4.jpg" alt="profile-user" class="rounded-circle" />
+                            <span class="ml-1 nav-user-name hidden-sm">RAJA <i class="mdi mdi-chevron-down"></i> </span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="#"><i class="ti-user text-muted mr-2"></i> Profile</a>
+                            <a class="dropdown-item" href="#"><i class="ti-lock text-muted mr-2"></i> Lock screen</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#"><i class="ti-power-off text-muted mr-2"></i> Logout</a>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="list-unstyled topbar-nav mb-0">
+                    <li>
+                        <button class="button-menu-mobile nav-link waves-effect waves-light">
+                            <i class="ti-menu nav-icon"></i>
+                        </button>
+                    </li>
+                    <li class="hide-phone app-search">
+                        <div class="form-group">
+                            <input type="text" placeholder="Search..." class="form-control">
+                            <a href=""><i class="ti-search"></i></a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+            <!-- end navbar-->
+        </div>
+        <!-- Top Bar End -->
+
+        <div class="page-wrapper">
+            <!-- Left Sidenav -->
+            <div class="left-sidenav">
+                <ul class="metismenu left-sidenav-menu">
+                    <li class="nav-item"><a class="nav-link" href="/AdminPanel/AdminDashboard"><i class="ti-control-record"></i>Dashbaord</a></li>
+                  
+                    <li>
+                        <a href="javascript: void(0);"><i class="ti-bar-chart"></i><span>Allocation</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                        <ul class="nav-second-level" aria-expanded="false">
+                            <li class="nav-item"><a class="nav-link" href="/Allocation/AllocationDashbaord"><i class="ti-control-record"></i>Dashboard</a></li>
+                            @*  <li>
+                            <a href="javascript: void(0);"><i class="ti-control-record"></i>Configuration <span class="menu-arrow left-has-menu"><i class="mdi mdi-chevron-right"></i></span></a>
+                            <ul class="nav-second-level" aria-expanded="false">
+                            <li><a class="nav-link text-dark" href="/OnlineRequirement/job/Index">Create Job Post</a></li>
+                            <li><a href="../others/email-read.html">Scoring Criteria</a></li>
+                            <li><a href="../others/email-read.html">Institute Name</a></li>
+                            <li><a href="../others/email-read.html">Degree Title</a></li>
+                            <li><a href="../others/email-read.html">City</a></li>
+                            <li><a href="../others/email-read.html">Country</a></li>
+                            </ul>
+                            </li>*@
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript: void(0);"><i class="ti-bar-chart"></i><span>Transfer</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                        <ul class="nav-second-level" aria-expanded="false">
+                            <li class="nav-item"><a class="nav-link" href="~/Index"><i class="ti-control-record"></i>Dashboard</a></li>
+                            @*  <li>
+                            <a href="javascript: void(0);"><i class="ti-control-record"></i>Configuration <span class="menu-arrow left-has-menu"><i class="mdi mdi-chevron-right"></i></span></a>
+                            <ul class="nav-second-level" aria-expanded="false">
+                            <li><a class="nav-link text-dark" href="/OnlineRequirement/job/Index">Create Job Post</a></li>
+                            <li><a href="../others/email-read.html">Scoring Criteria</a></li>
+                            <li><a href="../others/email-read.html">Institute Name</a></li>
+                            <li><a href="../others/email-read.html">Degree Title</a></li>
+                            <li><a href="../others/email-read.html">City</a></li>
+                            <li><a href="../others/email-read.html">Country</a></li>
+                            </ul>
+                            </li>*@
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript: void(0);"><i class="ti-bar-chart"></i><span>NDC</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                        <ul class="nav-second-level" aria-expanded="false">
+                            <li class="nav-item"><a class="nav-link" href="~/Index"><i class="ti-control-record"></i>Dashboard</a></li>
+                            @*  <li>
+                            <a href="javascript: void(0);"><i class="ti-control-record"></i>Configuration <span class="menu-arrow left-has-menu"><i class="mdi mdi-chevron-right"></i></span></a>
+                            <ul class="nav-second-level" aria-expanded="false">
+                            <li><a class="nav-link text-dark" href="/OnlineRequirement/job/Index">Create Job Post</a></li>
+                            <li><a href="../others/email-read.html">Scoring Criteria</a></li>
+                            <li><a href="../others/email-read.html">Institute Name</a></li>
+                            <li><a href="../others/email-read.html">Degree Title</a></li>
+                            <li><a href="../others/email-read.html">City</a></li>
+                            <li><a href="../others/email-read.html">Country</a></li>
+                            </ul>
+                            </li>*@
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript: void(0);"><i class="ti-bar-chart"></i><span>Allotments</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                        <ul class="nav-second-level" aria-expanded="false">
+                            <li class="nav-item"><a class="nav-link" href="~/Index"><i class="ti-control-record"></i>Dashboard</a></li>
+                            @*  <li>
+                            <a href="javascript: void(0);"><i class="ti-control-record"></i>Configuration <span class="menu-arrow left-has-menu"><i class="mdi mdi-chevron-right"></i></span></a>
+                            <ul class="nav-second-level" aria-expanded="false">
+                            <li><a class="nav-link text-dark" href="/OnlineRequirement/job/Index">Create Job Post</a></li>
+                            <li><a href="../others/email-read.html">Scoring Criteria</a></li>
+                            <li><a href="../others/email-read.html">Institute Name</a></li>
+                            <li><a href="../others/email-read.html">Degree Title</a></li>
+                            <li><a href="../others/email-read.html">City</a></li>
+                            <li><a href="../others/email-read.html">Country</a></li>
+                            </ul>
+                            </li>*@
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript: void(0);"><i class="ti-bar-chart"></i><span>Membership</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                        <ul class="nav-second-level" aria-expanded="false">
+                            <li class="nav-item"><a class="nav-link" href="~/Index"><i class="ti-control-record"></i>Dashboard</a></li>
+                            @*  <li>
+                            <a href="javascript: void(0);"><i class="ti-control-record"></i>Configuration <span class="menu-arrow left-has-menu"><i class="mdi mdi-chevron-right"></i></span></a>
+                            <ul class="nav-second-level" aria-expanded="false">
+                            <li><a class="nav-link text-dark" href="/OnlineRequirement/job/Index">Create Job Post</a></li>
+                            <li><a href="../others/email-read.html">Scoring Criteria</a></li>
+                            <li><a href="../others/email-read.html">Institute Name</a></li>
+                            <li><a href="../others/email-read.html">Degree Title</a></li>
+                            <li><a href="../others/email-read.html">City</a></li>
+                            <li><a href="../others/email-read.html">Country</a></li>
+                            </ul>
+                            </li>*@
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript: void(0);"><i class="ti-bar-chart"></i><span>Plot Management</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                        <ul class="nav-second-level" aria-expanded="false">
+                            <li class="nav-item"><a class="nav-link" href="~/Index"><i class="ti-control-record"></i>Dashboard</a></li>
+                            @*  <li>
+                            <a href="javascript: void(0);"><i class="ti-control-record"></i>Configuration <span class="menu-arrow left-has-menu"><i class="mdi mdi-chevron-right"></i></span></a>
+                            <ul class="nav-second-level" aria-expanded="false">
+                            <li><a class="nav-link text-dark" href="/OnlineRequirement/job/Index">Create Job Post</a></li>
+                            <li><a href="../others/email-read.html">Scoring Criteria</a></li>
+                            <li><a href="../others/email-read.html">Institute Name</a></li>
+                            <li><a href="../others/email-read.html">Degree Title</a></li>
+                            <li><a href="../others/email-read.html">City</a></li>
+                            <li><a href="../others/email-read.html">Country</a></li>
+                            </ul>
+                            </li>*@
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript: void(0);"><i class="ti-bar-chart"></i><span>Ballot</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                        <ul class="nav-second-level" aria-expanded="false">
+                            <li class="nav-item"><a class="nav-link" href="~/Index"><i class="ti-control-record"></i>Dashboard</a></li>
+                            @*  <li>
+                            <a href="javascript: void(0);"><i class="ti-control-record"></i>Configuration <span class="menu-arrow left-has-menu"><i class="mdi mdi-chevron-right"></i></span></a>
+                            <ul class="nav-second-level" aria-expanded="false">
+                            <li><a class="nav-link text-dark" href="/OnlineRequirement/job/Index">Create Job Post</a></li>
+                            <li><a href="../others/email-read.html">Scoring Criteria</a></li>
+                            <li><a href="../others/email-read.html">Institute Name</a></li>
+                            <li><a href="../others/email-read.html">Degree Title</a></li>
+                            <li><a href="../others/email-read.html">City</a></li>
+                            <li><a href="../others/email-read.html">Country</a></li>
+                            </ul>
+                            </li>*@
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript: void(0);"><i class="ti-bar-chart"></i><span>SB</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                        <ul class="nav-second-level" aria-expanded="false">
+                            <li class="nav-item"><a class="nav-link" href="~/Index"><i class="ti-control-record"></i>Dashboard</a></li>
+                            @*  <li>
+                            <a href="javascript: void(0);"><i class="ti-control-record"></i>Configuration <span class="menu-arrow left-has-menu"><i class="mdi mdi-chevron-right"></i></span></a>
+                            <ul class="nav-second-level" aria-expanded="false">
+                            <li><a class="nav-link text-dark" href="/OnlineRequirement/job/Index">Create Job Post</a></li>
+                            <li><a href="../others/email-read.html">Scoring Criteria</a></li>
+                            <li><a href="../others/email-read.html">Institute Name</a></li>
+                            <li><a href="../others/email-read.html">Degree Title</a></li>
+                            <li><a href="../others/email-read.html">City</a></li>
+                            <li><a href="../others/email-read.html">Country</a></li>
+                            </ul>
+                            </li>*@
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript: void(0);"><i class="ti-bar-chart"></i><span>Intimation</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                        <ul class="nav-second-level" aria-expanded="false">
+                            <li class="nav-item"><a class="nav-link" href="~/Index"><i class="ti-control-record"></i>Dashboard</a></li>
+                            @*  <li>
+                            <a href="javascript: void(0);"><i class="ti-control-record"></i>Configuration <span class="menu-arrow left-has-menu"><i class="mdi mdi-chevron-right"></i></span></a>
+                            <ul class="nav-second-level" aria-expanded="false">
+                            <li><a class="nav-link text-dark" href="/OnlineRequirement/job/Index">Create Job Post</a></li>
+                            <li><a href="../others/email-read.html">Scoring Criteria</a></li>
+                            <li><a href="../others/email-read.html">Institute Name</a></li>
+                            <li><a href="../others/email-read.html">Degree Title</a></li>
+                            <li><a href="../others/email-read.html">City</a></li>
+                            <li><a href="../others/email-read.html">Country</a></li>
+                            </ul>
+                            </li>*@
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript: void(0);"><i class="ti-bar-chart"></i><span>Marketing</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                        <ul class="nav-second-level" aria-expanded="false">
+                            <li class="nav-item"><a class="nav-link" href="~/Index"><i class="ti-control-record"></i>Dashboard</a></li>
+                            @*  <li>
+                            <a href="javascript: void(0);"><i class="ti-control-record"></i>Configuration <span class="menu-arrow left-has-menu"><i class="mdi mdi-chevron-right"></i></span></a>
+                            <ul class="nav-second-level" aria-expanded="false">
+                            <li><a class="nav-link text-dark" href="/OnlineRequirement/job/Index">Create Job Post</a></li>
+                            <li><a href="../others/email-read.html">Scoring Criteria</a></li>
+                            <li><a href="../others/email-read.html">Institute Name</a></li>
+                            <li><a href="../others/email-read.html">Degree Title</a></li>
+                            <li><a href="../others/email-read.html">City</a></li>
+                            <li><a href="../others/email-read.html">Country</a></li>
+                            </ul>
+                            </li>*@
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript: void(0);"><i class="ti-bar-chart"></i><span>Appointments</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                        <ul class="nav-second-level" aria-expanded="false">
+                            <li class="nav-item"><a class="nav-link" href="~/Index"><i class="ti-control-record"></i>Dashboard</a></li>
+                            @*  <li>
+                            <a href="javascript: void(0);"><i class="ti-control-record"></i>Configuration <span class="menu-arrow left-has-menu"><i class="mdi mdi-chevron-right"></i></span></a>
+                            <ul class="nav-second-level" aria-expanded="false">
+                            <li><a class="nav-link text-dark" href="/OnlineRequirement/job/Index">Create Job Post</a></li>
+                            <li><a href="../others/email-read.html">Scoring Criteria</a></li>
+                            <li><a href="../others/email-read.html">Institute Name</a></li>
+                            <li><a href="../others/email-read.html">Degree Title</a></li>
+                            <li><a href="../others/email-read.html">City</a></li>
+                            <li><a href="../others/email-read.html">Country</a></li>
+                            </ul>
+                            </li>*@
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript: void(0);"><i class="ti-bar-chart"></i><span>Appointments</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                        <ul class="nav-second-level" aria-expanded="false">
+                            <li class="nav-item"><a class="nav-link" href="~/Index"><i class="ti-control-record"></i>Finance</a></li>
+                            @*  <li>
+                            <a href="javascript: void(0);"><i class="ti-control-record"></i>Configuration <span class="menu-arrow left-has-menu"><i class="mdi mdi-chevron-right"></i></span></a>
+                            <ul class="nav-second-level" aria-expanded="false">
+                            <li><a class="nav-link text-dark" href="/OnlineRequirement/job/Index">Create Job Post</a></li>
+                            <li><a href="../others/email-read.html">Scoring Criteria</a></li>
+                            <li><a href="../others/email-read.html">Institute Name</a></li>
+                            <li><a href="../others/email-read.html">Degree Title</a></li>
+                            <li><a href="../others/email-read.html">City</a></li>
+                            <li><a href="../others/email-read.html">Country</a></li>
+                            </ul>
+                            </li>*@
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript: void(0);"><i class="ti-bar-chart"></i><span>Customer Management</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                        <ul class="nav-second-level" aria-expanded="false">
+                            <li class="nav-item"><a class="nav-link" href="~/Index"><i class="ti-control-record"></i>Finance</a></li>
+                            @*  <li>
+                            <a href="javascript: void(0);"><i class="ti-control-record"></i>Configuration <span class="menu-arrow left-has-menu"><i class="mdi mdi-chevron-right"></i></span></a>
+                            <ul class="nav-second-level" aria-expanded="false">
+                            <li><a class="nav-link text-dark" href="/OnlineRequirement/job/Index">Create Job Post</a></li>
+                            <li><a href="../others/email-read.html">Scoring Criteria</a></li>
+                            <li><a href="../others/email-read.html">Institute Name</a></li>
+                            <li><a href="../others/email-read.html">Degree Title</a></li>
+                            <li><a href="../others/email-read.html">City</a></li>
+                            <li><a href="../others/email-read.html">Country</a></li>
+                            </ul>
+                            </li>*@
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!-- end left-sidenav-->
+            <!-- Page Content-->
+            <div class="page-content">
+
+                @RenderBody()
+
+                <footer class="footer text-center text-sm-left">
+                    DEFENCE HOUSING AUTHORITY QUETTA <span class="text-muted d-none d-sm-inline-block float-right">Your Hope is Our Vision </span>
+                </footer><!--end footer-->
+            </div>
+            <!-- end page content -->
+         
+            @RenderSection("popupsmodals", required: false)
+
+        </div>
+        <!-- end page-wrapper -->
+     
+    </form>
+
+    <!-- Javascript -->
+    <script src="~/js/jquery.min.js"></script>
+    <script src="~/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/metisMenu.min.js"></script>
+    <script src="~/js/waves.min.js"></script>
+    <script src="~/js/jquery.slimscroll.min.js"></script>
+
+    <!-- App js -->
+    <script src="~/js/app.js"></script>
+
+   @* <!-- Sweet-Alert -->
+    <script src="~/plugins/sweet-alert2/sweetalert2.min.js"></script>
+    <script src="~/pages/sweet-alert.init.js"></script>
+
+    <script src="~/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/plugins/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <script src="~/plugins/dropify/js/dropify.min.js"></script>
+    <script src="~/pages/jquery.profile.init.js"></script>
+
+    <script src="~/plugins/filter/isotope.pkgd.min.js"></script>
+    <script src="~/plugins/filter/masonry.pkgd.min.js"></script>
+    <script src="~/plugins/filter/jquery.magnific-popup.min.js"></script>
+    <script src="~/pages/jquery.gallery.inity.js"></script>*@
+
+
+    @await RenderSectionAsync("Scripts", required: false)
+  
+    @RenderSection("additionalscript", required: false)
+</body>
+</html>

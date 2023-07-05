@@ -1,0 +1,520 @@
+﻿@page
+@model PMS.Pages.Allocation.AllocationDashbaordModel
+@{
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts@latest"></script>
+
+    <!-- Add a script section to render the chart -->
+    @section Scripts {
+        <!-- Aloc revenue year wise -->
+        <script>
+            // Get the revenue data from the model
+            var revenueData = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.RevenueDataList));
+
+            // Create arrays for years and amounts
+            var years = [];
+            var amounts = [];
+
+            // Extract years and amounts from the revenue data
+            revenueData.forEach(function (item) {
+                years.push(item.Transactionyear);
+                amounts.push(item.TotalAmount);
+            });
+
+            // Configure the chart options
+            var options = {
+                series: [{
+                    name: 'Revenue',
+                    data: amounts
+                }],
+                chart: {
+                    type: 'area',
+                    height: 350,
+                    zoom: {
+                        enabled: false
+                    }
+                },
+                xaxis: {
+                    type: 'category',
+                    categories: years
+                }
+            };
+
+            // Render the chart
+            var chart = new ApexCharts(document.querySelector("#ana_dash_2"), options);
+            chart.render();
+        </script>
+        <!-- End Aloc revenue year wise -->
+        <script>
+            // Get the revenue data from the model
+            var revenueData = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.Aloc_categWise));
+
+            // Create arrays for categories and counts
+            var categories = [];
+            var counts = [];
+
+            // Extract categories and counts from the revenue data
+            revenueData.forEach(function (item) {
+                categories.push(item.customer_categ);
+                counts.push(item.totalcount);
+            });
+
+            // Configure the chart options
+            var options = {
+                series: counts,
+                chart: {
+                    type: 'pie',
+                    height: 700
+                },
+                labels: categories,
+                responsive: [{
+                    breakpoint: 480,
+                    options: {
+                        chart: {
+                            width: 300
+                        },
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }]
+            };
+
+            // Render the chart
+            var chart = new ApexCharts(document.querySelector("#aloc_categWise"), options);
+            chart.render();
+        </script>
+
+    }
+}
+@section head {
+
+    <link rel="stylesheet" href="~/plugins/jvectormap/jquery-jvectormap-2.0.2.css">
+    <!--Morris Chart CSS -->
+    <link rel="stylesheet" href="~/plugins/morris/morris.css">
+
+
+    <link rel="stylesheet" href="~/plugins/dropify/css/dropify.min.css">
+    <link rel="stylesheet" href="~/plugins/filter/magnific-popup.css" />
+
+    <!-- Sweet Alert -->
+    <link rel="stylesheet" href="~/plugins/sweet-alert2/sweetalert2.min.css" />
+    <link rel="stylesheet" href="~/plugins/animate/animate.min.css" />
+
+    <!-- DataTables -->
+    <link rel="stylesheet" href="~/plugins/datatables/dataTables.bootstrap4.min.css" />
+    <link rel="stylesheet" href="~/plugins/datatables/buttons.bootstrap4.min.css" />
+    <!-- Responsive datatable examples -->
+    <link rel="stylesheet" href="~/plugins/datatables/responsive.bootstrap4.min.css" />
+
+
+
+
+}
+<div class="container-fluid">
+    <!-- Page-Title -->
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="page-title-box">
+                <div class="float-right">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="javascript:void(0);">PMS</a></li>
+                        <li class="breadcrumb-item"><a href="javascript:void(0);">Allocation</a></li>
+                        <li class="breadcrumb-item active">Dashboard</li>
+                    </ol>
+                </div>
+                <h4 class="page-title">Dashboard</h4>
+            </div><!--end page-title-box-->
+        </div><!--end col-->
+    </div><!--end row-->
+    <!-- end page title end breadcrumb -->
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="card card-eco">
+                <div class="card-body">
+                    <h4 class="title-text mt-0">Total Allocation</h4>
+                    <div class="d-flex justify-content-between">
+                        <h3 class="text-purple">@Model.total_aloc</h3>
+                        <i class="dripicons-user-group card-eco-icon bg-icon-purple align-self-center"></i>
+                    </div>
+                </div><!--end card-body-->
+            </div><!--end card-->
+        </div><!--end col-->
+        <div class="col-lg-3">
+            <div class="card card-eco">
+                <div class="card-body">
+                    <h4 class="title-text mt-0">Pending Allocation</h4>
+                    <div class="d-flex justify-content-between">
+                        <h3 class="text-pink">@Model.pendig_aloc</h3>
+                        <i class="dripicons-cart card-eco-icon bg-icon-pink align-self-center"></i>
+                    </div>
+
+                </div><!--end card-body-->
+            </div><!--end card-->
+        </div><!--end col-->
+        <div class="col-lg-3">
+            <div class="card card-eco">
+                <div class="card-body">
+                    <h4 class="title-text mt-0">Unallocated Plots</h4>
+                    <div class="d-flex justify-content-between">
+                        <h3 class="text-secondary">@Model.UnalocFile</h3>
+                        <i class="dripicons-jewel card-eco-icon bg-icon-secondary align-self-center"></i>
+                    </div>
+
+                </div><!--end card-body-->
+            </div><!--end card-->
+        </div><!--end col-->
+        <div class="col-lg-3">
+            <div class="card card-eco">
+                <div class="card-body">
+                    <h4 class="title-text mt-0">Total Allocation Revenue</h4>
+                    <div class="d-flex justify-content-between">
+                        <h3 class="text-warning">@Model.Aloc_Revenew M</h3>
+                        <i class="dripicons-wallet card-eco-icon bg-icon-warning  align-self-center"></i>
+                    </div>
+
+                </div><!--end card-body-->
+            </div><!--end card-->
+        </div><!--end col-->
+    </div><!--end row-->
+
+
+
+
+
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="card">
+                <div class="card-body">
+                    <div id="ana_dash_2" class="apex-charts"></div>
+
+                </div><!--end card-body-->
+            </div><!--end card-->
+
+        </div><!--end col-->
+
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="mt-0 header-title">Files Categories</h4>
+
+                    <div id="donut-chart">
+                        <div id="aloc_categWise" class="flot-chart drop-shadow" style="height: 320px">
+                        </div>
+                    </div>
+
+
+
+                </div><!--end card-body-->
+            </div><!--end card-->
+        </div><!--end col-->
+    </div><!--end row-->
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-3">
+            <div class="card report-card bg-purple-gradient shadow-purple">
+                <div class="card-body">
+                    <div class="float-right">
+                        <i class="dripicons-user-group report-main-icon bg-icon-purple"></i>
+                    </div>
+                    <span class="badge badge-light text-purple">Intimation</span>
+                    <h3 class="my-3">24k</h3>
+                    <p class="mb-0 text-truncate"><span class="text-success"><i class="mdi mdi-trending-up"></i>8.5%</span>New Sessions Today</p>
+                </div><!--end card-body-->
+            </div><!--end card-->
+        </div> <!--end col-->
+        <div class="col-md-6 col-lg-3">
+            <div class="card report-card bg-danger-gradient shadow-danger">
+                <div class="card-body">
+                    <div class="float-right">
+                        <i class="dripicons-clock report-main-icon bg-icon-danger"></i>
+                    </div>
+                    <span class="badge badge-light text-danger">Service Benefit</span>
+                    <h3 class="my-3">00:18</h3>
+                    <p class="mb-0 text-truncate"><span class="text-success"><i class="mdi mdi-trending-up"></i>1.5%</span> Weekly Avg.Sessions</p>
+                </div><!--end card-body-->
+            </div><!--end card-->
+        </div> <!--end col-->
+        <div class="col-md-6 col-lg-3">
+            <div class="card report-card bg-secondary-gradient shadow-secondary">
+                <div class="card-body">
+                    <div class="float-right">
+                        <i class="dripicons-meter report-main-icon bg-icon-secondary"></i>
+                    </div>
+                    <span class="badge badge-light text-secondary">Marketing</span>
+                    <h3 class="my-3">$2400</h3>
+                    <p class="mb-0 text-truncate"><span class="text-danger"><i class="mdi mdi-trending-down"></i>35%</span> Bounce Rate Weekly</p>
+                </div><!--end card-body-->
+            </div><!--end card-->
+        </div> <!--end col-->
+        <div class="col-md-6 col-lg-3">
+            <div class="card report-card bg-warning-gradient shadow-warning">
+                <div class="card-body">
+                    <div class="float-right">
+                        <i class="dripicons-wallet report-main-icon bg-icon-warning"></i>
+                    </div>
+                    <span class="badge badge-light text-warning">Ballot</span>
+                    <h3 class="my-3">85000</h3>
+                    <p class="mb-0 text-truncate"><span class="text-success"><i class="mdi mdi-trending-up"></i>10.5%</span> Completions Weekly</p>
+                </div><!--end card-body-->
+            </div><!--end card-->
+        </div> <!--end col-->
+    </div><!--end row-->
+
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title mt-0 mb-3">Project Budget</h4>
+                    <div id="morris-bar-chart" class="morris-chart project-budget-chart drop-shadow-bar"></div>
+                    <ul class="list-unstyled text-center text-muted mb-0 mt-2">
+                        <li class="list-inline-item"><i class="mdi mdi-album text-primary mr-2"></i>Total Budget</li>
+                        <li class="list-inline-item"><i class="mdi mdi-album mr-2 text-success"></i>Amount Used</li>
+                        <li class="list-inline-item"><i class="mdi mdi-album mr-2 text-warning"></i>Target Amount</li>
+                    </ul>
+                </div><!--end card-body-->
+            </div><!--end card-->
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card crm-data-card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-4 align-self-center">
+                                    <div class="data-icon">
+                                        <i class="far fa-smile rounded-circle bg-soft-warning"></i>
+                                    </div>
+                                </div><!-- end col-->
+                                <div class="col-8">
+                                    <h3 class="text-warning">63k</h3>
+                                    <p class="text-muted font-14 mb-0">Happy Customers</p>
+                                </div><!-- end col-->
+                            </div><!-- end row-->
+                        </div><!--end card-body-->
+                    </div><!--end card-->
+                </div><!-- end col-->
+                <div class="col-md-6">
+                    <div class="card crm-data-card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-4 align-self-center">
+                                    <div class="data-icon ">
+                                        <i class="far fa-user rounded-circle bg-soft-success"></i>
+                                    </div>
+                                </div><!-- end col-->
+                                <div class="col-8">
+                                    <h3 class="text-success">10k</h3>
+                                    <p class="text-muted font-14 mb-0">New Customers</p>
+                                </div><!-- end col-->
+                            </div><!-- end row-->
+                        </div><!--end card-body-->
+                    </div><!--end card-->
+                </div><!-- end col-->
+            </div><!--end row-->
+        </div><!--end col-->
+
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title mt-0">Sessions Device</h4>
+                    <div id="ana_device" class="apex-charts"></div>
+                    <div class="table-responsive mt-4">
+                        <table class="table mb-0">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>Device</th>
+                                    <th>Sassions</th>
+                                    <th>Day</th>
+                                    <th>Week</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">Dasktops</th>
+                                    <td>1843</td>
+                                    <td>-3</td>
+                                    <td>-12</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Tablets</th>
+                                    <td>2543</td>
+                                    <td>-5</td>
+                                    <td>-2</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Mobiles</th>
+                                    <td>3654</td>
+                                    <td>-5</td>
+                                    <td>-6</td>
+                                </tr>
+
+                            </tbody>
+                        </table><!--end /table-->
+                    </div>
+                </div><!--end card-body-->
+            </div><!--end card-->
+
+        </div><!--end col-->
+    </div><!--end row-->
+
+    <div class="row">
+        <div class="col-8">
+            <div class="card">
+                <div class="card-body">
+
+                    <h4 class="mt-0 header-title">Plot Policy Wise</h4>
+
+
+                    <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>File Category</th>
+                                <th>Policy</th>
+                                <th>Plot Count</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.FilePolicyWise)
+                            {
+                                <tr>
+                                    <td>@item.file_categ</td>
+                                    <td>@item.policy</td>
+                                    <td>@item.plot_count</td>
+
+                                    <td>
+                                        <a href="#" class="mr-2" onclick="plotCateg('@item.id', '@item.file_categ')">
+                                            <i class="fas fa-edit text-info font-16"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div> <!-- end col -->
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-body">
+
+                    <h4 class="mt-0 header-title">Plot Category Wise</h4>
+
+
+                    <table id="datatable1-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>File Category</th>
+                                <th>Policy</th>
+                                <th>Plot Category</th>
+                                <th>Plot Count</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.PlotCategWise)
+                            {
+                                <tr>
+                                    <td>@item.file_categ</td>
+                                    <td>@item.policy</td>
+                                    <td>@item.plot_categ</td>
+                                    <td>@item.plot_count</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div><!--end card-->
+            </div>
+        </div><!--end col-->
+    </div> <!-- end row -->
+
+
+
+
+
+</div><!-- container -->
+@section additionalscript {
+
+    <script src="~/plugins/moment/moment.js"></script>
+    <script src="~/plugins/apexcharts/apexcharts.min.js"></script>
+    <script src="~/plugins/jvectormap/jquery-jvectormap-2.0.2.min.js"></script>
+    <script src="~/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+    <script src="~/pages/jquery.eco_dashboard.init.js"></script>
+    <script src="~/pages/jquery.crm_dashboard.init.js"></script>
+    <!--Plugins-->
+    <script src="~/plugins/morris/morris.min.js"></script>
+    <script src="~/plugins/raphael/raphael.min.js"></script>
+    <script src="~/pages/jquery.projects_dashboard.init.js"></script>
+    <script src="~/pages/jquery.analytics_dashboard.init.js"></script>
+
+    <!-- Sweet-Alert -->
+    <script src="~/plugins/sweet-alert2/sweetalert2.min.js"></script>
+    <script src="~/pages/sweet-alert.init.js"></script>
+
+
+    <script src="~/plugins/dropify/js/dropify.min.js"></script>
+    <script src="~/pages/jquery.profile.init.js"></script>
+
+    <script src="~/plugins/filter/isotope.pkgd.min.js"></script>
+    <script src="~/plugins/filter/masonry.pkgd.min.js"></script>
+    <script src="~/plugins/filter/jquery.magnific-popup.min.js"></script>
+    <script src="~/pages/jquery.gallery.inity.js"></script>
+
+
+    <script src="~/plugins/flot-chart/jquery.flot.min.js"></script>
+    <script src="~/plugins/flot-chart/jquery.flot.time.js"></script>
+    <script src="~/plugins/flot-chart/jquery.flot.tooltip.min.js"></script>
+    <script src="~/plugins/flot-chart/jquery.flot.resize.js"></script>
+    <script src="~/plugins/flot-chart/jquery.flot.pie.js"></script>
+    <script src="~/plugins/flot-chart/jquery.flot.selection.js"></script>
+    <script src="~/plugins/flot-chart/jquery.flot.stack.js"></script>
+    <script src="~/plugins/flot-chart/curvedLines.js"></script>
+    <script src="~/plugins/flot-chart/jquery.flot.crosshair.js"></script>
+    <script src="~/pages/jquery.flot.init.js"></script>
+
+
+
+
+
+    <!-- Required datatable js -->
+    <script src="~/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/plugins/datatables/dataTables.bootstrap4.min.js"></script>
+    <!-- Buttons examples -->
+    <script src="~/plugins/datatables/dataTables.buttons.min.js"></script>
+    <script src="~/plugins/datatables/buttons.bootstrap4.min.js"></script>
+    <script src="~/plugins/datatables/jszip.min.js"></script>
+    <script src="~/plugins/datatables/pdfmake.min.js"></script>
+    <script src="~/plugins/datatables/vfs_fonts.js"></script>
+    <script src="~/plugins/datatables/buttons.html5.min.js"></script>
+    <script src="~/plugins/datatables/buttons.print.min.js"></script>
+    <script src="~/plugins/datatables/buttons.colVis.min.js"></script>
+    <!-- Responsive examples -->
+    <script src="~/plugins/datatables/dataTables.responsive.min.js"></script>
+    <script src="~/plugins/datatables/responsive.bootstrap4.min.js"></script>
+    <script src="~/pages/jquery.datatable.init.js"></script>
+
+
+
+
+    <script>
+        function plotCateg(id, fileCateg) {
+            fetch(`/Allocation/AllocationDashbaord/plotCateg?id=${id}&fileCateg=${encodeURIComponent(fileCateg)}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({})
+            })
+                .then(response => response.json())
+                .then(data => {
+                    // Handle the response data and populate the second datatable
+                    console.log(data);
+                    // Example: Assuming you have a function named 'populateDataTable' to populate the second datatable
+                    populateDataTable(data);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+    </script>
+  
+
+
+
+
+}
